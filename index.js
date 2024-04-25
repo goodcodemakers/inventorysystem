@@ -22,9 +22,9 @@ app.get("/", function (req, res) {
 app.post("/create", function (req, res) {
   const post = req.body;
   let a = {};
-  a.itemName = post[0]; // 품명
-  a.quantity = post[1]; // 수량
-  a.remark = post[2]; // 비고
+  a.itemName = post.itemName; // 품명
+  a.quantity = post.quantity; // 수량
+  a.remark = post.remark; // 비고
   const day = new Date();
   let year = day.getFullYear();
   let month = day.getMonth() + 1;
@@ -33,6 +33,7 @@ app.post("/create", function (req, res) {
   a.entryDate = today; // 기입날짜
   posts.push(a);
   fs.writeFileSync("postDB.json", JSON.stringify(posts));
+  console.log("데이터베이스에 새로운 데이터가 성공적으로 추가되었습니다.");
   res.redirect("/");
 });
 
