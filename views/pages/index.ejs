@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재고 체크</title>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 7px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        strong {
+            margin-right: 5px;
+        }
+   
+    </style>
+</head>
+<body>
+    <h1>재고 체크</h1>
+    
+    <!-- 등록 폼 -->
+    <form action="/create" method="post">
+        <label for="itemName">품명:</label>
+        <input type="text" id="itemName" name="itemName" required><br>
+
+        <label for="quantity">수량:</label>
+        <input type="number" id="quantity" name="quantity" required><br>
+
+        <label for="remark">비고:</label>
+        <input type="text" id="remark" name="remark"><br>
+
+        <button type="submit">등록</button>
+    </form>
+
+    <!-- 등록된 목록 -->
+    <h2>등록된 목록</h2>
+    <ul>
+        <%posts.forEach(function(post) { %>
+            <li>
+                <strong>품명:</strong> <%= post.itemName %>, 
+                <strong>수량:</strong> <%= post.quantity %>, 
+                <strong>비고:</strong> <%= post.remark %>, 
+                <strong>기입날짜:</strong> <%= post.entryDate %>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
